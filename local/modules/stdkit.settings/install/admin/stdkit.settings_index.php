@@ -42,7 +42,8 @@
 				"TITLE" => "Контакты",
 				"OPTIONS" => array(
 					"Контактные данные",
-					array( "main_phone", "Телефон", "", array( "text" ) ),
+					array( "main_phone", "По всем вопросам", "", array( "text" ) ),
+					array( "car_phone", "Заказать машину", "", array( "text" ) ),
 					array( "email", "Email общий", "", array( "text" ) ),
 
 					/*"Footer",

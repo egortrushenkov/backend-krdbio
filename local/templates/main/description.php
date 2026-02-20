@@ -1,6 +1,8 @@
-<? if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
-
-$arTemplate = Array(
-	'NAME' => 'MainTemplate',
-	'DESCRIPTION' => 'Главный шаблон'
+<?
+$arTemplate = array (
+  'NAME' => 'MainTemplate',
+  'DESCRIPTION' => 'Главный шаблон',
+  'SORT' => '',
+  'TYPE' => '',
 );
+?>

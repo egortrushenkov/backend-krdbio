@@ -72,7 +72,7 @@ class KitTPL
     {
         ?>
         <svg class="<?= $json['className'] ?>" <?= $json['data'] ?>>
-            <use href="/img/icons.svg#<?= $json['id'] ?>"></use>
+            <use href="<?=SITE_TEMPLATE_PATH?>/img/icons.svg#<?= $json['id'] ?>"></use>
         </svg>
         <?php
     }
@@ -80,18 +80,11 @@ class KitTPL
     private static function _loader($json)
     {
         ?>
-        <div class="loader <?= $json['className'] ?>>" data-loader>
-              <span class="loader-progress">
-                  <? self::_icon(self::parseStringToObject("{id: 'loader', className: 'loader-icon icon', data: null}")); ?>
-              </span>
+        <div class="loader <?= $json['className']?>" data-loader>
+          <span class="loader-progress">
+              <? self::_icon(self::parseStringToObject("{id: 'loader', className: 'loader-icon icon', data: null}")); ?>
+          </span>
         </div>
-        <?php
-    }
-
-    private static function _title($json)
-    {
-        ?>
-        <h2 class="font-bold uppercase text-2.5xl sm:text-4xl lg:text-title <?= $json['className'] ?>" <?= $json['data'] ?>><?= $json['text'] ?></h2>
         <?php
     }
 
@@ -157,299 +150,155 @@ class KitTPL
     private static function _price($json)
     {
         ?>
-        <div class="flex items-center justify-center bg-gradient-to-r from-blue-dark to-blue rounded-tr-5xl rounded-bl-5xl h-14 sm:h-16 px-10 <%= className %>" <%= data %> >
+        <div class="flex items-center justify-center bg-gradient-to-r from-blue-dark to-blue rounded-tr-5xl rounded-bl-5xl h-14 sm:h-16 px-10 <?=$json['className']?>" <?=$json['data']?> >
             <span class="font-semibold text-center text-xl sm:text-2xl">Цена ОТ 10 000 ₽</span>
         </div>
+        <?php
+    }
+
+    private static function _shadow($json) {
+        ?>
+            <div class="bg-black opacity-50 rounded-full blur h-0.5 <?=$json['className']?>"></div>
+        <?php
+    }
+    private static function _subtitle($json) {
+        ?>
+            <h2 class="font-alt font-extrabold uppercase text-4xl/tight sm:text-5xl/tight lg:text-6xl/tight <?=$json['className']?>" <?=$json['data']?>><?=$json['text']?></h2>
+        <?php
+    }
+
+    private static function _subtitleSmall($json) {
+        ?>
+        <h2 class="font-alt font-extrabold uppercase text-2xl/tight sm:text-3xl/tight lg:text-4xl/tight xl:text-subtitle/tight <?=$json['className']?>" <?=$json['data']?>><?=$json['text']?></h2>
         <?php
     }
 
     private static function _swiperButtonPrev($json)
     {
         ?>
-        <button
-                class="absolute hidden rounded-full shadow-md size-14 swiper-button-prev btn btn-white btn-fill lg:flex -left-8 xl:-left-12"
-                data-slider-prev="<?= $json['value'] ?>" data-waved="dark">
-            <? self::_icon(self::parseStringToObject("{id: 'arrow-left', className: 'text-2xl text-black', data: null}")); ?>
+        <button class="swiper-button-prev btn btn-gray btn-fill absolute text-black text-xs sm:text-base rounded-full size-8 sm:size-10 <?=$json['className']?>" data-slider-prev="<?=$json['value']?>" data-waved="dark">
+            <? self::_icon(self::parseStringToObject("{id: 'arrow-left', className: null, data: null}")); ?>
         </button>
         <?php
     }
 
-    private static function _swiperButtonNext($json)
-    {
+    private static function _swiperButtonNext($json) {
         ?>
-        <button
-                class="absolute hidden rounded-full shadow-md size-14 swiper-button-next btn btn-white btn-fill lg:flex -right-8 xl:-right-12"
-                data-slider-next="<?= $json['value'] ?>" data-waved="dark">
-            <? self::_icon(self::parseStringToObject("{id: 'arrow-right', className: 'text-2xl text-black', data: null}")); ?>
-        </button>
+            <button class="swiper-button-next btn btn-gray btn-fill absolute text-black text-xs sm:text-base rounded-full size-8 sm:size-10 <?=$json['className']?>" data-slider-next="<?=$json['value']?>" data-waved="dark">
+                <? self::_icon(self::parseStringToObject("{id: 'arrow-right', className: null, data: null}")); ?>
+            </button>
         <?php
     }
 
-    private static function _tabs($json)
+    private static function _swiperPagination($json)
     {
         ?>
-        <div class="sticky z-10 top-[73px] md:top-[102px]" data-filtering-tabs data-slider="tabs">
-            <div class="px-4 -mx-4 swiper sm:mx-0 sm:px-0" data-slider-swiper="tabs">
-                <div class="swiper-wrapper">
-                    <? for ($i = 0; $i < 5; $i++) {
-                        ?>
-                        <div class="swiper-slide">
-                            <a class="text-black btn btn-akva btn-fill btn-xl btn-light sm:btn-xxl font-normal text-lg sm:text-1.5xl px-2 active:transform-none [&.filtering-category]:text-white [&.filtering-category]:font-semibold [&.filtering-category]:btn-second [&.filtering-category]:btn-gradient [&.filtering-category]:pointer-events-none"
-                               data-filtering-category="tabs" data-filtering-value="<?= $i ?>" data-scroll
-                               data-waved="dark"
-                               draggable="false" href="#tabs">
-                                2<?= $i ?> октября
-                            </a>
+            <div class="swiper-pagination <?=$json['className']?>" data-slider-pagination="<?=$json['value']?>"></div>
+        <?php
+    }
+
+    private static function _cardService($json) {
+        ?>
+        <div class="card border border-solid border-gray">
+            <a class="pack pack-[65] bg-gray rounded-t-inherit" data-waved="light" draggable="false" href="">
+
+                <? self::_loader(self::parseStringToObject("{className: ''}")); ?>
+                <? self::_picture(self::parseStringToObject("{src: '/img/pictures/test', format: 'jpg', className: 'pack-image image rounded-t-inherit', data: null}")); ?>
+            </a>
+            <div class="card-content p-4 sm:p-6">
+                <h4 class="font-semibold text-1.5xl sm:text-2xl mb-1 sm:mb-3">
+                    Аренда туалетных кабин
+                </h4>
+                <p class="text-sm sm:text-base opacity-80 line-clamp-6 mb-4 sm:mb-6">
+                    Доставка, установка МТК, заправка биожидкостью, утилизация отходов.
+                </p>
+                <? if (!empty($json['price']) || !empty($json['btn'])):?>
+                    <div class="flex flex-col gap-4 sm:gap-6 mt-auto">
+
+                        <? if (!empty($json['price'])):?>
+                            <div class="font-semibold text-1.5xl sm:text-2xl">От 1800 ₽/сут</div>
+                        <?endif;?>
+
+                        <? if (!empty($json['btn'])):?>
+                            <a class="btn btn-primary btn-fill btn-light btn-lg swiper-no-swiping" data-waved="light" draggable="false" href="">Подробнее</a>
+                        <?endif;?>
+
+                    </div>
+                <?endif;?>
+            </div>
+        </div>
+        <?php
+    }
+
+    private static function _die($json) {
+        $die = [
+                'lime' => [
+                        'gradient' => 'from-lime-dark to-lime',
+                        'text' => 'Новинка'
+                ],
+                'chocolate' => [
+                        'gradient' => 'from-chocolate-dark to-chocolate',
+                        'text' => 'Лидер продаж'
+                ],
+                'crimson' => [
+                        'gradient' => 'from-crimson-dark to-crimson',
+                        'text' => 'Лучшее качество'
+                ],
+                'sky' => [
+                        'gradient' => 'from-sky-dark to-sky',
+                        'text' => 'Акция'
+                ]
+
+        ];
+        ?>
+        <div class="flex items-center justify-center absolute top-2 sm:top-4 left-2 sm:left-4 bg-gradient-to-r rounded-tl-3xl rounded-br-3xl w-full sm:w-auto max-w-32 sm:max-w-none h-8 px-2 sm:px-5 <?= $die['variant']['gradient'] ?>">
+            <span class="font-semibold uppercase text-white text-center text-xs sm:text-sm"><?php \lib\KitTPL::die($json['variant']['text']);?></span>
+        </div>
+        <?php
+    }
+    private static function _cardProduct($json) {
+        ?>
+            <div class="card border border-solid border-gray">
+                <a class="pack pack-xl bg-gray rounded-t-inherit" data-waved="dark" draggable="false" href="">
+                    <?php \lib\KitTPL::_loader(self::parseStringToObject("{className: ''}")); ?>;?>
+                    <?php \lib\KitTPL::_picture(self::parseStringToObject("{src: '/img/pictures/test', format: 'jpg', className: 'pack-image image rounded-t-inherit', data: null}"));?>
+                    <?php \lib\KitTPL::_die(self::parseStringToObject($json['variant']));?>
+                </a>
+                <div class="card-content p-2 sm:p-4 lg:p-6">
+                    <h3 class="font-normal text-sm sm:text-base">
+                        Супер-Эконом
+                    </h3>
+                    <?if (!empty($json['buy'])) {?>
+                    <div class="font-semibold text-xl sm:text-2xl mt-1 sm:mt-2 mb-3 sm:mb-6">
+                        От 24 000 ₽
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center justify-center sm:gap-1 bg-blue/10 text-center text-sm sm:text-base rounded-tl-4xl rounded-br-4xl h-12 sm:h-10 px-2 sm:px-4 mb-2">
+                        В аренду <span class="font-medium">от 4 000 ₽/мес</span>
+                    </div>
+                    <? } else { ?>
+                    <div class="flex flex-col sm:flex-row sm:justify-between gap-1 mt-4 mb-4 sm:mb-6">
+                        <div class="flex flex-col">
+                            <span class="text-sm sm:text-base">Посуточно</span>
+                            <span class="font-semibold sm:text-xl lg:text-2xl">4 000 ₽</span>
                         </div>
-
-                        <?
-                    } ?>
+                        <span class="hidden sm:block shrink-0 bg-gray w-px"></span>
+                        <div class="flex flex-col">
+                            <span class="text-sm sm:text-base">В месяц</span>
+                            <span class="font-semibold sm:text-xl lg:text-2xl">14 000 ₽</span>
+                        </div>
+                    </div>
+                    <? } ?>
+                    <a class="btn btn-primary btn-fill btn-light btn-lg mt-auto" data-fancybox-form data-waved="light" draggable="false" href="/dialogs/dialog-feedback.html"><?= $json['buy'] ? 'Купить' : 'Арендовать' ?></a>
                 </div>
             </div>
-            <? self::_swiperButtonPrev(self::parseStringToObject("{value: 'tabs'}")); ?>
-            <? self::_swiperButtonNext(self::parseStringToObject("{value: 'tabs'}")); ?>
-        </div>
         <?php
     }
 
-    private static function _materials($json)
+    private static function _title($json)
     {
         ?>
-        <div class="mt-10">
-            <? for ($i = 0; $i < 5; $i++) {
-                ?>
-                <div data-filtering-card="tabs" data-filtering-value="<?= $i ?>">
-                    <? if ($json['status']) { ?>
-                        <h3 class="font-bold mb-8 text-2.5xl sm:text-4xl lg:text-title text-primary">
-                            2<?= $i ?> октября (День <?= $i ?>)
-                        </h3>
-                    <? } ?>
-                    <div class="flex flex-col gap-2 sm:gap-4">
-                        <% for (var j = 0; j < 3; j++) { %>
-                        <div class="border border-solid shadow-md border-grey card" id="copy-<?= $i ?>-<%= j %>">
-                            <div class="px-4 py-6 sm:px-6 lg:px-8 sm:py-8 card-content">
-                                <div class="flex flex-wrap items-center gap-2 sm:gap-4">
-                                    <div
-                                            class="flex items-center justify-center px-6 border border-solid rounded-full h-9 sm:h-10 sm:px-8 border-primary/30 shrink-0">
-                                        <span class="text-sm font-semibold sm:text-base text-primary">12:30 - 14:50</span>
-                                    </div>
-                                    <div
-                                            class="flex items-center justify-center px-4 border border-solid rounded-full h-9 sm:h-10 sm:px-6 border-grey shrink-0">
-                                        <span class="text-sm sm:text-base">Конференц-зал</span>
-                                    </div>
-                                    <div
-                                            class="flex items-center justify-center rounded-full size-9 sm:size-10 shrink-0 bg-aqua/15">
-                                        <? self::_icon(self::parseStringToObject("{id: 'star', className: 'icon text-aqua text-1.5xl sm:text-2xl', data: null}")); ?>
-                                    </div>
-                                    <div
-                                            class="flex items-center justify-center border border-solid rounded-full size-9 sm:size-10 shrink-0 border-grey">
-                                        <? self::_icon(self::parseStringToObject("{id: 'headphones', className: 'icon text-1.5xl sm:text-2xl', data: null}")); ?>
-                                    </div>
-                                    <div class="relative w-9 sm:w-10 shrink-0"
-                                         data-copy="http://localhost:9000/index.html#copy-<?= $i ?>-<%= j %>">
-                                        <button class="text-black rounded-full btn btn-grey btn-contur size-10"
-                                                data-copy-button data-waved="dark">
-                                            <? self::_icon(self::parseStringToObject("{id: 'link', className: 'icon text-1.5xl sm:text-2xl', data: null}")); ?>
-                                        </button>
-                                        <span
-                                                class="absolute invisible text-xs duration-300 -translate-x-1/2 opacity-0 pointer-events-none left-1/2 top-full text-aqua"
-                                                data-copy-result>Скопировано!</span>
-                                    </div>
-                                    <div
-                                            class="flex items-center justify-between pl-1 pr-6 text-sm border border-solid rounded-full h-9 sm:h-10 shrink-0 border-grey sm:text-base">
-                                        <div
-                                                class="flex items-center justify-center mr-3 rounded-full size-7 sm:size-8 shrink-0 bg-aqua">
-                                            <? self::_icon(self::parseStringToObject("{id: 'online', className: 'icon text-white text-1.5xl sm:text-2xl', data: null}")); ?>
-                                        </div>
-                                        Online
-                                    </div>
-                                    <a class="pl-1 pr-6 text-sm font-normal text-black rounded-full btn btn-aqua h-9 sm:h-10 shrink-0 bg-aqua/15 sm:text-base"
-                                       data-waved="dark" draggable="false" href="">
-                                        <div
-                                                class="flex items-center justify-center mr-3 rounded-full size-7 sm:size-8 shrink-0 bg-aqua">
-                                            <? self::_icon(self::parseStringToObject("{id: 'notes', className: 'icon text-white text-1.5xl sm:text-2xl', data: null}")); ?>
-                                        </div>
-                                        Материалы
-                                    </a>
-                                </div>
-                                <h4 class="mt-3 text-xl font-semibold sm:mt-4 sm:text-2xl lg:text-3xl">
-                                    Кейс-сессия “Международная кооперация и инновации на рынке термочувствительных
-                                    грузов”
-                                </h4>
-                                <p class="mt-5 font-semibold sm:text-lg sm:mt-6 lg:text-xl">
-                                    Пленарная сессия “Международная кооперация и инновации на рынке термочувствительных
-                                    грузов”
-                                </p>
-                                <div class="mt-3 sm:mt-6 group/accordion" data-accordion>
-                                    <div data-accordion-content>
-                                        <div class="pb-4 description text-sm/normal sm:text-base/normal">
-                                            <p>
-                                                <b>Ключевые вопросы:</b>
-                                            </p>
-                                            <br>
-                                            <ol>
-                                                <li>Роль и место повестки продуктовой безопасности во внутренней и
-                                                    внешней
-                                                    политике России.
-                                                </li>
-                                                <li>Императивы развития перевозок скоропорта в новых экономических
-                                                    условиях.
-                                                </li>
-                                                <li>Государственные меры поддержки развития экспорта российской
-                                                    продукции
-                                                    АПК на рынки АТР и ЮВА.
-                                                </li>
-                                                <li>Инвестиционные проекты в рыбной отрасли.</li>
-                                                <li>Развитие инфраструктуры и технологий для обеспечения НХЦ на торговых
-                                                    маршрутах международного рынка скоропортящейся продукции.
-                                                </li>
-                                                <li>Фарма-рынок: интеграция производства и логистики.</li>
-                                                <li>Подготовка кадров для холодильной отрасли.</li>
-                                            </ol>
-                                            <br>
-                                            <ul>
-                                                <li>Роль и место повестки продуктовой безопасности во внутренней и
-                                                    внешней
-                                                    политике России.
-                                                </li>
-                                                <li>Императивы развития перевозок скоропорта в новых экономических
-                                                    условиях.
-                                                </li>
-                                                <li>Государственные меры поддержки развития экспорта российской
-                                                    продукции
-                                                    АПК на рынки АТР и ЮВА.
-                                                </li>
-                                                <li>Инвестиционные проекты в рыбной отрасли.</li>
-                                                <li>Развитие инфраструктуры и технологий для обеспечения НХЦ на торговых
-                                                    маршрутах международного рынка скоропортящейся продукции.
-                                                </li>
-                                                <li>Фарма-рынок: интеграция производства и логистики.</li>
-                                                <li>Подготовка кадров для холодильной отрасли.</li>
-                                            </ul>
-                                            <br>
-                                            <p>
-                                                Китай – крупнейший стратегический партнёр России, в том числе и в
-                                                области
-                                                рыбной промышленности (поставка специализированного оборудования и
-                                                комплектующих, взаимная торговля рыбой и морепродуктами).
-                                                <br><br>
-                                                В последнее время также появляется всё больше примеров работ китайских
-                                                судостроителей для российских судовладельцев промыслового флота. Во всех
-                                                известных авторам случаях постройка велась по типовым китайским
-                                                проектам.
-                                                Такое решение имеет как свои плюсы (например, за счёт массовости и
-                                                дешевизны), так и минусы, которые стоят отдельных обсуждений.
-                                                <br><br>
-                                                В нашей же презентации будет раскрыт уникальный опыт постройки
-                                                рыболовных
-                                                судов в Китае по передовым зарубежным проектам. Будут рассмотрены
-                                                ключевые
-                                                этапы — от проведения тендера между заводами и проработки проекта до
-                                                завершения постройки и дальнейшей эксплуатации.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <button class="py-1 btn btn-second btn-lines" data-accordion-toggle
-                                            data-waved="light">
-											<span
-                                                    class="group-[[data-accordion=active]]/accordion:hidden">Показать полностью</span>
-                                        <span class="hidden group-[[data-accordion=active]]/accordion:block">Скрыть</span>
-                                        <? self::_icon(["id" => 'arrow-right', "className" => 'icon ml-2 ease-linear text-sm duration-300 rotate-90 group-[[data-accordion=active]]/accordion:-rotate-90', "data" => null]); ?>
-                                    </button>
-                                </div>
-                                <div class="flex flex-col gap-6 mt-6">
-                                    <% for (var k = 0; k < 2; k++) { %>
-                                    <div>
-                                        <h4 class="mb-4 text-xl font-semibold">
-                                            Спикеры
-                                        </h4>
-                                        <div class="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
-                                            <% for (var m = 0; m < 4; m++) { %>
-                                            <div class="flex items-center">
-                                                <div
-                                                        class="relative mr-3 overflow-hidden rounded-full size-14 bg-sea shrink-0">
-                                                    <?= self::_loader() ?>
-                                                    <?= self::_picture(self::parseStringToObject("{src: '" . SITE_TEMPLATE_PATH . "/img/pictures/test', format: 'jpg', className: 'image rounded-full', data: null}")) ?>
-                                                </div>
-                                                <div>
-                                                    <h5 class="text-sm font-semibold sm:text-base">
-                                                        Дмитрий Патрушев
-                                                    </h5>
-                                                    <p class="mt-1 text-xs/normal sm:text-sm/normal opacity-60">
-                                                        Министр сельского хозяйства Российской Федерации
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <% } %>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                                </div>
-                                <div class="flex flex-col gap-6 mt-6 md:flex-row md:flex-wrap lg:gap-14">
-                                    <% for (var k = 0; k < 2; k++) { %>
-                                    <div>
-                                        <h4 class="mb-4 text-xl font-semibold">
-                                            Организаторы
-                                        </h4>
-                                        <div class="grid grid-cols-2 gap-4 md:flex md:flex-wrap">
-                                            <% for (var m = 0; m < (k === 0 ? 4 : 2); m++) { %>
-                                            <a class="md:w-40 md:shrink-0" draggable="false" href="" target="_blank">
-                                                <div
-                                                        class="duration-200 border border-solid pack pack-md rounded-2xl hover:bg-grey/20 border-grey"
-                                                        data-waved="dark">
-                                                    <?= self::_picture(self::parseStringToObject("{src: '" . SITE_TEMPLATE_PATH . "/img/pictures/logo-aqua', format: 'svg', className: 'image object-scale-down p-2', data: null}")) ?>
-                                                </div>
-                                            </a>
-                                            <% } %>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
-                        <% } %>
-                    </div>
-                </div>
-                <?
-            } ?>
-            <? if ($json['status']) { ?>
-                <ul class="flex flex-col gap-2 mt-8">
-                    <li class="flex items-center">
-                        <div
-                                class="flex items-center justify-center mr-2 rounded-full size-9 sm:size-10 bg-aqua/15 shrink-0">
-                            <? self::_icon(self::parseStringToObject("{id: 'star', className: 'icon text-aqua text-1.5xl sm:text-2xl', data: null}")); ?>
-                        </div>
-                        <span class="text-sm sm:text-base">Главное событие</span>
-                    </li>
-                    <li class="flex items-center">
-                        <div
-                                class="flex items-center justify-center mr-2 border border-solid rounded-full size-9 sm:size-10 border-grey shrink-0">
-                            <? self::_icon(self::parseStringToObject("{id: 'headphones', className: 'icon text-1.5xl sm:text-2xl', data: null}")); ?>
-                        </div>
-                        <span class="text-sm sm:text-base">Мероприятия с синхронным переводом</span>
-                    </li>
-                    <li class="flex items-center">
-                        <div
-                                class="flex items-center justify-center mr-2 border border-solid rounded-full size-9 sm:size-10 border-grey shrink-0">
-                            <? self::_icon(self::parseStringToObject("{id: 'link', className: 'icon text-1.5xl sm:text-2xl', data: null}")); ?>
-                        </div>
-                        <span class="text-sm sm:text-base">Ссылка</span>
-                    </li>
-                    <li class="flex items-center">
-                        <div class="flex items-center justify-center mr-2 rounded-full size-9 sm:size-10 bg-aqua shrink-0">
-                            <? self::_icon(self::parseStringToObject("{id: 'online', className: 'icon text-white text-1.5xl sm:text-2xl', data: null}")); ?>
-                        </div>
-                        <span class="text-sm sm:text-base">Online</span>
-                    </li>
-                    <li class="flex items-center">
-                        <div class="flex items-center justify-center mr-2 rounded-full size-9 sm:size-10 bg-aqua shrink-0">
-                            <? self::_icon(self::parseStringToObject("{id: 'notes', className: 'icon text-white text-1.5xl sm:text-2xl', data: null}")); ?>
-                        </div>
-                        <span class="text-sm sm:text-base">Материалы</span>
-                    </li>
-                </ul>
-            <? } ?>
-        </div>
+            <h1 class="font-alt font-extrabold uppercase text-4xl/tight sm:text-5xl/tight lg:text-6xl/tight <?=$json['className']?>" <?=$json['data']?>><?=$json['text']?></h1>
         <?php
     }
+
 }

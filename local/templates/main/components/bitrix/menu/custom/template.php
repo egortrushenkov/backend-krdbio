@@ -15,14 +15,66 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 $this->setFrameMode(true);
 
 ?>
-<nav class="flex flex-row gap-2 mb-5 sm:flex-col">
+
+<?php
+function getChildren($input, &$start = 0, $level = 0) {
+    $children = [];
+    if (!$level) {
+        $lastDepthLevel = 1;
+        if (is_array($input)) {
+            foreach ($input as $i => $arItem) {
+                if ($arItem['DEPTH_LEVEL'] > $lastDepthLevel) {
+                    if ($i > 0) {
+                        $input[$i - 1]['IS_PARENT'] = 1;
+                    }
+                }
+                $lastDepthLevel = $arItem['DEPTH_LEVEL'];
+            }
+        }
+    }
+    for ($i = $start, $count = count($input); $i < $count; ++$i) {
+        $item = $input[$i];
+        if ($level > $item['DEPTH_LEVEL'] - 1) {
+            break;
+        } elseif (!empty($item['IS_PARENT'])) {
+            ++$i;
+            $item['CHILDREN'] = getChildren($input, $i, $level + 1);
+            --$i;
+        }
+        $children[] = $item;
+    }
+    $start = $i;
+    return $children;
+}
+?>
+
+
+<nav class="flex items-center justify-between gap-4 w-full max-w-[830px]">
 	<?if (!empty($arResult)):?>
+        <? $arResult = getChildren($arResult) ?>
 		<?foreach($arResult as $arItem):?>
-			<?$css = ($arItem["SELECTED"]) ? '' : ' opacity-20';?>
-			<a class="sm:justify-start px-2 sm:px-4 btn btn-fill btn-lg gap-2 flex-grow sm:flex-grow-0 <?= ($arItem["SELECTED"]) ? 'btn-primary pointer-events-none' : 'btn-grey dark:bg-white/10 dark:hover:bg-white/30 text-black dark:text-white' ?>"
-			   data-waved="dark" draggable="false" href="<?= $arItem["LINK"] ?>">
-					<?= $arItem["TEXT"] ?>
-			</a>
+            <?if (!empty($arItem[' LDREN'])):?>
+                <div class="group/accordion relative" data-accordion data-close-click data-close-scroll>
+                    <button class="flex items-center font-medium underline-offset-4 hover:underline" data-accordion-toggle>
+                        <?= $arItem["TEXT"] ?>
+                        <?php \lib\KitTPL::icon("{id: 'arrow-right', className: 'icon text-lg opacity-50 rotate-90 ml-2 transition-transform group-[[data-accordion=active]]/accordion:-rotate-90', data: null}");?>
+                    </button>
+                    <div class="absolute top-8 left-0 w-max" data-accordion-content>
+                        <div class="card bg-white rounded-2xl">
+                            <div class="card-content items-start gap-4 p-4">
+                                <?if ($arItem["CHILDREN"]):?>
+                                    <?foreach($arItem["CHILDREN"] as $arItemChild):?>
+                                        <a class="text-sm underline-offset-4 hover:underline" draggable="false" href=""><?=$arItemChild["TEXT"]?></a>
+                                    <?endforeach?>
+                                <?endif?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?endif?>
+            <?if (empty($arItem['CHILDREN'])):?>
+                <a class="font-medium underline-offset-4 hover:underline" draggable="false" href=""><?=$arItem["TEXT"]?></a>
+            <?endif?>
 		<?endforeach?>
 	<?endif?>
 </nav>
