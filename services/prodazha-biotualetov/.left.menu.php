@@ -2,28 +2,28 @@
 $aMenuLinks = Array(
 	Array(
 		"Биотуалет супер-эконом",
-		"/sale/sale1",
+		"/prodazha-biotualetov/super-ekonom",
 		Array(),
 		Array(),
 		""
 	),
     Array(
         "Биотуалет Эконом",
-        "/sale/sale2",
+        "/prodazha-biotualetov/ekonom",
         Array(),
         Array(),
         ""
     ),
     Array(
         "Биотуалет Стандарт",
-        "/sale/sale3",
+        "/prodazha-biotualetov/standart",
         Array(),
         Array(),
         ""
     ),
     Array(
         "Биотуалет Евро",
-        "/sale/sale4",
+        "/prodazha-biotualetov/evro",
         Array(),
         Array(),
         ""

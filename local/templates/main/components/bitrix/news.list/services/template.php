@@ -11,9 +11,13 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
+$title = !empty($arParams["SECTION_TITLE"])
+        ? $arParams["SECTION_TITLE"]
+        : $arResult["SECTION"]["NAME"];
 ?>
 <section class="container">
-    <?php \lib\KitTPL::subtitle("{text: 'Ассенизаторские услуги', className: 'sm:text-center mb-8 sm:mb-11 lg:mb-14 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}");?>
+    <?php \lib\KitTPL::subtitle("{text: '".$title."', className: 'sm:text-center mb-8 sm:mb-11 lg:mb-14 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}");?>
     <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
         <? foreach ($arResult["ITEMS"] as $arItem): ?>
             <?

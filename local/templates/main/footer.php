@@ -20,7 +20,11 @@
         ],
         [
                 'title' => 'Наши услуги',
-                'listing' => ['Аренда биотуалетов', 'Обслуживание биотуалетов', 'Откачка выгребных ям и септиков', 'Ассенизаторские услуги']
+                'listing' => [
+                        'Аренда биотуалетов' => '/services/',
+                        'Обслуживание биотуалетов' => '/services/',
+                        'Откачка выгребных ям и септиков' => '/services/',
+                        'Ассенизаторские услуги' => '/services/']
         ],
     ];
 ?>
@@ -43,7 +47,7 @@
                 </a>
             <?php endforeach; ?>
         </div>
-        <a class="font-medium text-sm opacity-60 underline underline-offset-4 decoration-dotted transition-opacity hover:opacity-100 mb-6 sm:mb-8 lg:mb-10" draggable="false" href="">Политика конфиденциальности</a>
+        <a class="font-medium text-sm opacity-60 underline underline-offset-4 decoration-dotted transition-opacity hover:opacity-100 mb-6 sm:mb-8 lg:mb-10" draggable="false" href="/privacy/">Политика конфиденциальности</a>
         <div class="font-medium text-sm opacity-60">
             © <span id="year"></span>
         </div>
@@ -56,7 +60,7 @@
         </button>
         <div class="sm:!h-auto" data-accordion-content>
             <nav class="flex flex-col items-start gap-4 pt-4 sm:pt-6 lg:pt-8">
-                <? for ($i = 0; $i < $item['listing']['length']; $i++):?>
+                <? for ($i = 0; $i < 7; $i++):?>
                     <a class="text-sm underline-offset-4 hover:underline" draggable="false" href=""><?= $item['listing'][$i] ?></a>
                 <?endfor;?>
             </nav>
@@ -90,6 +94,7 @@
 
 
 <!-- Куки -->
+
 <?php if ($_COOKIE['cookie_cookie_active'] != 1): ?>
 <section class="container fixed bottom-4 lg:bottom-10 left-0 right-0 z-20 py-0" data-cookie data-expires="7" id="cookie">
     <div class="card bg-white rounded-2xl sm:rounded-3xl shadow-md w-full xl:max-w-5xl xl:mx-auto">
@@ -102,6 +107,7 @@
     </div>
 </section>
 <?php endif;?>
+
 
 </main>
 

@@ -1,5 +1,7 @@
 <?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/local/templates/main/components/bitrix/menu/helpers.php';
 
 /** @var array $arParams */
 /** @var array $arResult */
@@ -16,44 +18,14 @@ $this->setFrameMode(true);
 
 ?>
 
-<?php
-function getChildren($input, &$start = 0, $level = 0) {
-    $children = [];
-    if (!$level) {
-        $lastDepthLevel = 1;
-        if (is_array($input)) {
-            foreach ($input as $i => $arItem) {
-                if ($arItem['DEPTH_LEVEL'] > $lastDepthLevel) {
-                    if ($i > 0) {
-                        $input[$i - 1]['IS_PARENT'] = 1;
-                    }
-                }
-                $lastDepthLevel = $arItem['DEPTH_LEVEL'];
-            }
-        }
-    }
-    for ($i = $start, $count = count($input); $i < $count; ++$i) {
-        $item = $input[$i];
-        if ($level > $item['DEPTH_LEVEL'] - 1) {
-            break;
-        } elseif (!empty($item['IS_PARENT'])) {
-            ++$i;
-            $item['CHILDREN'] = getChildren($input, $i, $level + 1);
-            --$i;
-        }
-        $children[] = $item;
-    }
-    $start = $i;
-    return $children;
-}
-?>
+
 
 
 <nav class="flex items-center justify-between gap-4 w-full max-w-[830px]">
 	<?if (!empty($arResult)):?>
         <? $arResult = getChildren($arResult) ?>
 		<?foreach($arResult as $arItem):?>
-            <?if (!empty($arItem[' LDREN'])):?>
+            <?if (!empty($arItem['CHILDREN'])):?>
                 <div class="group/accordion relative" data-accordion data-close-click data-close-scroll>
                     <button class="flex items-center font-medium underline-offset-4 hover:underline" data-accordion-toggle>
                         <?= $arItem["TEXT"] ?>
@@ -64,7 +36,7 @@ function getChildren($input, &$start = 0, $level = 0) {
                             <div class="card-content items-start gap-4 p-4">
                                 <?if ($arItem["CHILDREN"]):?>
                                     <?foreach($arItem["CHILDREN"] as $arItemChild):?>
-                                        <a class="text-sm underline-offset-4 hover:underline" draggable="false" href=""><?=$arItemChild["TEXT"]?></a>
+                                        <a class="text-sm underline-offset-4 hover:underline" draggable="false" href="<?=$arItemChild["LINK"]?>"><?=$arItemChild["TEXT"]?></a>
                                     <?endforeach?>
                                 <?endif?>
                             </div>
@@ -73,7 +45,7 @@ function getChildren($input, &$start = 0, $level = 0) {
                 </div>
             <?endif?>
             <?if (empty($arItem['CHILDREN'])):?>
-                <a class="font-medium underline-offset-4 hover:underline" draggable="false" href=""><?=$arItem["TEXT"]?></a>
+                <a class="font-medium underline-offset-4 hover:underline" draggable="false" href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a>
             <?endif?>
 		<?endforeach?>
 	<?endif?>

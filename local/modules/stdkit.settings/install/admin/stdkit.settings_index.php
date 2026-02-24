@@ -46,6 +46,11 @@
 					array( "car_phone", "Заказать машину", "", array( "text" ) ),
 					array( "email", "Email общий", "", array( "text" ) ),
 
+                    "Соцсети/Мессенджеры",
+					array( "telegram", "Telegram", "", array( "text" ) ),
+					array( "max", "Max", "", array( "text" ) ),
+					array( "whatsapp", "WhatsApp", "", array( "text" ) ),
+
 					/*"Footer",
 					array( "footer_slogan", "Текст в подвале", "", array( "text" ) ),*/
 

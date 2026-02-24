@@ -1,29 +1,29 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Услуга 1",
-		"/services/services1",
+		"Продажа биотуалетов",
+		"/services/prodazha-biotualetov",
 		Array(),
 		Array(),
 		""
 	),
     Array(
-        "Услуга 2",
-        "/services/services2",
+        "Ассенизаторские услуги",
+        "/services/assenizatorskie-uslugi",
         Array(),
         Array(),
         ""
     ),
     Array(
-        "Услуга 3",
-        "/services/services3",
+        "Обслуживание биотуалетов",
+        "/services/obsluzhivanie-biotualetov",
         Array(),
         Array(),
         ""
     ),
     Array(
-        "Услуга 4",
-        "/services/services4",
+        "Аренда туалетных кабин",
+        "/services/arenda-tualetnykh-kabin",
         Array(),
         Array(),
         ""

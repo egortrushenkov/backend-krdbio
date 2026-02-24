@@ -11,11 +11,13 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
 ?>
 <section class="container">
-    <?php \lib\KitTPL::subtitle("{text:'".$arResult['NAME']."', className: 'sm:text-center mb-8 sm:mb-11 lg:mb-14 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}"); ?>
+    <?php \lib\KitTPL::subtitle("{text:'".$arParams["SECTION_TITLE"]."', className: 'sm:text-center mb-8 sm:mb-11 lg:mb-14 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}"); ?>
     <div class="grid xl:grid-cols-2 gap-2 sm:gap-5 lg:gap-8 text-white">
         <? foreach ($arResult["ITEMS"] as $arItem): ?>
+
             <?
             $this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
             $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));

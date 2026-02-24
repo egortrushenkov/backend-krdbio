@@ -1,6 +1,14 @@
 <?php
 $arUrlRewrite=array (
-  0 => 
+  2 => 
+  array (
+    'CONDITION' => '#^/services/prodazha-biotualetov/([^/]+)/?$#',
+    'RULE' => '10',
+    'ID' => 'ELEMENT_CODE=$1',
+    'PATH' => '/services/prodazha-biotualetov/details.php',
+    'SORT' => 100,
+  ),
+  1 => 
   array (
     'CONDITION' => '#^/rest/#',
     'RULE' => '',

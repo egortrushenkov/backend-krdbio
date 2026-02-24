@@ -2,7 +2,7 @@
 $aMenuLinks = Array(
 	Array(
 		"Продажа биотуалетов",
-		"/sale/",
+		"/services/prodazha-biotualetov/",
 		Array(),
 		Array(),
 		""

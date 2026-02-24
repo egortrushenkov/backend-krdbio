@@ -8,18 +8,15 @@
 
 	$APPLICATION->SetTitle("404 Not Found");
 ?>
-
-	<!--<section class="container flex flex-col items-center justify-center text-center">
-		<div class="flex items-center justify-center gap-4 mb-10">
-			<b class="text-9xl sm:text-[12rem] text-grey-dark leading-none dark:text-black">4</b>
-			<?php /*=\lib\Kit::picture(SITE_TEMPLATE_PATH.'/img/pictures/404', 'png', 'block w-full max-w-36 sm:max-w-56')*/?>
-			<b class="text-9xl sm:text-[12rem] text-grey-dark leading-none dark:text-black">4</b>
-		</div>
-		<p class="mb-6 font-normal text-sm/normal sm:text-base/normal md:mb-9">
-			Возможно, запрашиваемая Вами страница была перенесена или удалена. <br class="hidden md:block">
-			Либо Вы допустили небольшую опечатку при вводе адреса.
-		</p>
-		<a class="btn btn-primary btn-lg btn-fill" data-waved="light" draggable="false" href="/">На главную</a>
-	</section>-->
+    <section class="container flex items-center justify-center grow">
+        <div class="flex flex-col items-center text-center">
+            <h1 class="font-alt font-extrabold text-[11rem] sm:text-[16rem] lg:text-[20rem] leading-none opacity-20 mb-4 sm:mb-6 lg:mb-8">404</h1>
+            <?php \lib\KitTPL::subtitleSmall("{text: 'Страница не найдена...', className: 'mb-4 sm:mb-6 lg:mb-8', data: null}");?>
+            <p class="text-sm sm:text-base mb-8">
+                Возможно, запрашиваемая вами страница была перенесена <br class="hidden sm:block"> или удалена. Проверьте правильность написания адреса
+            </p>
+            <a class="btn btn-primary btn-fill btn-light btn-lg" data-waved="light" draggable="false" href="/">На главную</a>
+        </div>
+    </section>
 
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
