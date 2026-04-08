@@ -1,6 +1,6 @@
 <?php
 $arUrlRewrite = array(
-    2 =>
+    0 =>
         array(
             'CONDITION' => '#^/prodazha-biotualetov/([^/]+)/?$#',
             'RULE' => '10',

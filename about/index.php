@@ -11,7 +11,7 @@ use Bitrix\Main\Config\Option;
 <?//$APPLICATION->IncludeComponent("kit:primal", "", ["CODE"=> $APPLICATION->GetCurPage(false)]);?>
 
 <!-- Hero (Primal) -->
-<?php \lib\KitTPL::primal("{bg: 'about', text: 'Компания «БИО-СЕРВИС» <br> была основана в 2009 г.', description: 'С самого начала специализация нашей деятельности была направлена <br> на продажу, аренду и обслуживание мобильных туалетных кабин', cost: 'false', listing: 'false'}");?>
+<?php \lib\KitTPL::primal("{bg: 'about', text: 'Компания «БИО-СЕРВИС» <br> была основана в 2009 г.', description: 'и оказывает полный спектр услуг в сфере санитарного обслуживания <br>на территории Краснодара и Краснодарского края.', cost: 'false', listing: 'false'}");?>
 
 <!-- Ассенизаторские услуги в Краснодаре -->
 <?

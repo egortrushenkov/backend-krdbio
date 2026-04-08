@@ -79,6 +79,7 @@
 
 <!-- Аренда и обслуживание биотуалетов -->
 <?$APPLICATION->IncludeComponent("bitrix:news.list", "services", Array(
+        "BTN" => True,
         "ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
         "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
         "AJAX_MODE" => "N",	// Включить режим AJAX
