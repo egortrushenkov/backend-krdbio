@@ -5,7 +5,7 @@
         Свяжитесь с нами удобным для вас способом
     </p>
     <form data-form="submit">
-        <input type="hidden" value="Тема" name="theme">
+        <input type="hidden" value="Нужна консультация по аренде или покупке" name="theme">
         <div class="flex flex-col gap-4 mb-6">
             <label data-label>
                 <h5 class="font-medium mb-2">

@@ -54,9 +54,9 @@ function makeWebp ($src) {
 /**************************** /WEBP **********************************/
 
 /**************************** telegram **********************************/
-function t_me($tgText, $files=false, $chats_id = ["-1001976568863"], $thread_id = 12){
+function t_me($tgText, $files=false, $chats_id = ["-1003615706113"]){
 
-    $token = "11111111111:AAAAAAAAAAAAAAAAAAAAAAAA";
+    $token = "8545944627:AAHovrgl6uUcBzOJKXAx8gzFYLKIQytQgcw";
     $site = $_SERVER['SERVER_NAME'];//$_SERVER['HTTP_ORIGIN']
 
     foreach ($chats_id as $chat) {
@@ -66,7 +66,7 @@ function t_me($tgText, $files=false, $chats_id = ["-1001976568863"], $thread_id 
             "chat_id" => $chat,
             "text" => $tgText.$site . $files[0],
             "parse_mode" => "html",
-            "message_thread_id"=> $thread_id//id нужного топика
+            //"message_thread_id"=> $thread_id//id нужного топика
         ];
 
         if (is_array($files)) {

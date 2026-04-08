@@ -30,7 +30,7 @@ $buy = $arParams["SECTION_BUY"];
             <div class="anim anim-up ease-in-out duration-700" data-anim
                  id="<?= $this->GetEditAreaId($arItem['ID']); ?>">
                 <div class="card border border-solid border-gray">
-                    <a class="pack pack-xl bg-gray rounded-t-inherit" data-waved="dark" draggable="false" href="/services/prodazha-biotualetov/<?=$arItem['CODE']?>/">
+                    <a class="pack pack-xl bg-gray rounded-t-inherit" data-waved="dark" draggable="false" href="/prodazha-biotualetov/<?=$arItem['CODE']?>/">
                         <?php \lib\KitTPL::loader("{className: ''}");?>
                         <?php \lib\KitTPL::picture("{src: '".$arItem['PREVIEW_PICTURE']['SRC']."', format: 'url', className: 'pack-image image rounded-t-inherit', data: null}");?>
                         <?php \lib\KitTPL::die("'{$arItem['PROPERTIES']['tag']["VALUE_XML_ID"]}'");?>
@@ -55,7 +55,7 @@ $buy = $arParams["SECTION_BUY"];
                             <span class="hidden sm:block shrink-0 bg-gray w-px"></span>
                             <div class="flex flex-col">
                                 <span class="text-sm sm:text-base">В месяц</span>
-                                <span class="font-semibold sm:text-xl lg:text-2xl"><?= $arItem["PROPERTIES"]['priceRentMoth']["VALUE"] ?> ₽</span>
+                                <span class="font-semibold sm:text-xl lg:text-2xl"><?= $arItem["PROPERTIES"]['priceRentMonth']["VALUE"] ?> ₽</span>
                             </div>
                         </div>
                         <? }; ?>

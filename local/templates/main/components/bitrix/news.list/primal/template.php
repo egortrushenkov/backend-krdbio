@@ -35,10 +35,10 @@ $parametrsProduct = [
                     <div class="absolute inset-0 bg-gray rounded-inherit">
                         <?php \lib\KitTPL::loader("{className: ''}");?>
                         <picture>
-                            <source srcset="<?php makeWebp(['PREVIEW_PICTURE']['SRC']);?>" media="(min-width: 575.98px)" type="image/webp">
-                            <source srcset="<?=$arItem['PREVIEW_PICTURE']['SRC']?>" media="(min-width: 575.98px)">
-                            <source srcset="<?php makeWebp($arItem['DETAIL_PICTURE']['SRC'])?>" type="image/webp">
-                            <img class="image rounded-inherit" draggable="false" loading="lazy" src="<?=$arItem['DETAIL_PICTURE']['SRC']?>" alt="">
+                            <source srcset="<?= makeWebp($arItem['PREVIEW_PICTURE']['SRC'])?>" media="(min-width: 575.98px)" type="image/webp">
+                            <source srcset="<?= $arItem['PREVIEW_PICTURE']['SRC']?>" media="(min-width: 575.98px)">
+                            <source srcset="<?= makeWebp($arItem['DETAIL_PICTURE']['SRC'])?>" type="image/webp">
+                            <img class="image rounded-inherit" draggable="false" loading="lazy" src="<?= $arItem['DETAIL_PICTURE']['SRC']?>" alt="">
                         </picture>
                     </div>
                     <div class="flex flex-col items-start relative text-white translate-y-10 opacity-0 transition ease-linear duration-500 group-[.swiper-slide-active]/slide:translate-y-0 group-[.swiper-slide-active]/slide:opacity-100">
@@ -55,7 +55,9 @@ $parametrsProduct = [
                                 </li>
                             <?endforeach;?>
                         </ul>
-                        <a class="btn btn-white btn-fill btn-lg text-black rounded-full swiper-no-swiping w-full sm:max-w-56 mt-8 sm:mt-12 lg:mt-16" data-waved="dark" draggable="false" href="">Подробнее</a>
+                        <? if ($arItem['PROPERTIES']['nameBtn']['VALUE'] !== ""): ?>
+                            <a class="btn btn-white btn-fill btn-lg text-black rounded-full swiper-no-swiping w-full sm:max-w-56 mt-8 sm:mt-12 lg:mt-16" data-waved="dark" draggable="false" href="<?=$arItem['PROPERTIES']['linkBtn']['VALUE']?>"><?=$arItem['PROPERTIES']['nameBtn']['VALUE']?></a>
+                        <? endif;?>
                     </div>
                 </div>
             </div>

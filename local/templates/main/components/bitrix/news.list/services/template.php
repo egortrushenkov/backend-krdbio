@@ -12,6 +12,8 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 
+$btn = $arParams["BTN"];
+
 $title = !empty($arParams["SECTION_TITLE"])
         ? $arParams["SECTION_TITLE"]
         : $arResult["SECTION"]["NAME"];
@@ -27,10 +29,12 @@ $title = !empty($arParams["SECTION_TITLE"])
             <div class="anim anim-up ease-in-out duration-700" data-anim
                  id="<?= $this->GetEditAreaId($arItem['ID']); ?>">
                 <div class="card border border-solid border-gray">
-                    <a class="pack pack-[65] bg-gray rounded-t-inherit" data-waved="light" draggable="false" href="">
+                    <!-- Когда страницы появятся поменять с DIV на тег A -->
+                    <div class="pack pack-[65] bg-gray rounded-t-inherit" data-waved="light" draggable="false" href="">
                         <?php \lib\KitTPL::loader("{className: ''}"); ?>
                         <?php \lib\KitTPL::picture("{src: '".$arItem['PREVIEW_PICTURE']['SRC']."', format: 'url', className: 'pack-image image rounded-t-inherit', data: null}"); ?>
-                    </a>
+                    </div>
+                    <!-- КОНЕЦ Когда страницы появятся поменять с DIV на тег A -->
                     <div class="card-content p-4 sm:p-6">
                         <h4 class="font-semibold text-1.5xl sm:text-2xl mb-1 sm:mb-3">
                             <?= $arItem['NAME'] ?>
@@ -42,8 +46,10 @@ $title = !empty($arParams["SECTION_TITLE"])
                             <? if (!empty($arItem["PROPERTIES"]["PRICE"]["VALUE"])): ?>
                                 <div class="font-semibold text-1.5xl sm:text-2xl"><?= $arItem["PROPERTIES"]["PRICE"]["VALUE"] ?></div>
                             <? endif; ?>
+                            <? if ($btn): ?>
                             <a class="btn btn-primary btn-fill btn-light btn-lg swiper-no-swiping" data-waved="light"
-                               draggable="false" href="<?= $arItem['CODE'] ?>">Подробнее</a>
+                             draggable="false" href="<?= $arItem['CODE'] ?>">Подробнее</a>
+                            <? endif; ?>
                         </div>
                     </div>
                 </div>

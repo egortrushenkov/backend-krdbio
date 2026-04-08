@@ -28,7 +28,7 @@ $parametrsProduct = [
         <div class="w-full sm:max-w-md">
             <div class="card border border-solid border-gray">
                 <div class="card-content relative rounded-inherit">
-                    <a class="pack pack-xxl bg-gray rounded-inherit h-full" data-fancybox data-waved="dark" draggable="false" href="/img/pictures/test.jpg">
+                    <a class="pack pack-xxl bg-gray rounded-inherit h-full" data-fancybox data-waved="dark" draggable="false" href="<?=$arResult['DETAIL_PICTURE']['SRC']?>">
                         <?php \lib\KitTPL::loader("{className: ''}");?>
                         <?php \lib\KitTPL::picture("{src: '".$arResult['DETAIL_PICTURE']['SRC']."', format: 'url', className: 'pack-image image rounded-inherit', data: null}");?>
                     </a>
@@ -64,7 +64,7 @@ $parametrsProduct = [
                 </li>
                 <li class="flex flex-col">
                     <span class="text-sm sm:text-base mb-1">Взять в аренду</span>
-                    <span class="font-semibold text-2xl mb-3 sm:mb-6">От <?=$arResult['PROPERTIES']['priceRentDay']['VALUE']?> ₽/мес</span>
+                    <span class="font-semibold text-2xl mb-3 sm:mb-6">От <?=$arResult['PROPERTIES']['priceRentMonth']['VALUE']?> ₽/мес</span>
                     <a class="btn btn-sky-dark btn-fill btn-lg" data-fancybox-form data-waved="light" draggable="false" href="/ajax/dialogs/dialog-feedback.php">Арендовать</a>
                 </li>
             </ul>

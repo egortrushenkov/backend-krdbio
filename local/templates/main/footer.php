@@ -9,22 +9,39 @@
             '/img/pictures/max',
     ];
 
+    // Загружаем пункты верхнего меню
+    include($_SERVER['DOCUMENT_ROOT'] . '/.top.menu.php');
+    $topMenuLinks = $aMenuLinks;
+
+    // Загружаем подкатегории продажи
+    include($_SERVER['DOCUMENT_ROOT'] . '/prodazha-biotualetov/.left.menu.php');
+    $saleMenuLinks = $aMenuLinks;
+
+    // Загружаем подкатегории услуг
+    include($_SERVER['DOCUMENT_ROOT'] . '/services/.left.menu.php');
+    $servicesMenuLinks = $aMenuLinks;
+
+    // Вспомогательная функция: превращает массив меню в [название => url]
+    $buildNavLinks = function(array $menuLinks, array $prepend = []) {
+        $links = $prepend;
+        foreach ($menuLinks as $item) {
+            $links[$item[0]] = $item[1];
+        }
+        return $links;
+    };
+
     $nav = [
         [
-                'title' => 'Навигация',
-                'listing' => ['Главная', 'Продажа биотуалетов', 'Наши услуги', 'О компании', 'Новости', 'Контакты']
+            'title' => 'Навигация',
+            'listing' => $buildNavLinks($topMenuLinks, ['Главная' => '/'])
         ],
         [
-                'title' => 'Продажа биотуалетов',
-                'listing' => ['Биотуалет супер-эконом', 'Биотуалет Эконом', 'Биотуалет Стандарт', 'Биотуалет Евро']
+            'title' => 'Продажа биотуалетов',
+            'listing' => $buildNavLinks($saleMenuLinks)
         ],
         [
-                'title' => 'Наши услуги',
-                'listing' => [
-                        'Аренда биотуалетов' => '/services/',
-                        'Обслуживание биотуалетов' => '/services/',
-                        'Откачка выгребных ям и септиков' => '/services/',
-                        'Ассенизаторские услуги' => '/services/']
+            'title' => 'Наши услуги',
+            'listing' => $buildNavLinks($servicesMenuLinks)
         ],
     ];
 ?>
@@ -60,9 +77,9 @@
         </button>
         <div class="sm:!h-auto" data-accordion-content>
             <nav class="flex flex-col items-start gap-4 pt-4 sm:pt-6 lg:pt-8">
-                <? for ($i = 0; $i < 7; $i++):?>
-                    <a class="text-sm underline-offset-4 hover:underline" draggable="false" href=""><?= $item['listing'][$i] ?></a>
-                <?endfor;?>
+                <?php foreach ($item['listing'] as $title => $url): ?>
+                    <a class="text-sm underline-offset-4 hover:underline" draggable="false" href="<?= $url ?>"><?= $title ?></a>
+                <?php endforeach; ?>
             </nav>
         </div>
     </div>

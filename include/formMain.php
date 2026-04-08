@@ -24,7 +24,7 @@
                         Оставить заявку
                     </h4>
                     <form data-form="submit" action="/ajax/php/submit-handler.php">
-                        <input type="hidden" value="Тема" name="theme">
+                        <input type="hidden" value="На аренду и обслуживание биотуалета" name="theme">
                         <div class="flex flex-col gap-4 mb-6">
                             <label data-label>
                                 <h5 class="font-medium mb-2">

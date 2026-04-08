@@ -155,7 +155,7 @@ class KitTPL
     {
         ?>
         <div class="flex items-center justify-center bg-gradient-to-r from-blue-dark to-blue rounded-tr-5xl rounded-bl-5xl h-14 sm:h-16 px-10 <?= $json['className'] ?>" <?= $json['data'] ?> >
-            <span class="font-semibold text-center text-xl sm:text-2xl">Цена ОТ <?= $json['price']?> ₽</span>
+            <span class="font-semibold text-center text-xl sm:text-2xl">Цена ОТ <?= $json['price'] ?> ₽</span>
         </div>
         <?php
     }
@@ -215,14 +215,14 @@ class KitTPL
             <a class="pack pack-[65] bg-gray rounded-t-inherit" data-waved="light" draggable="false" href="">
 
                 <? self::_loader(self::parseStringToObject("{className: ''}")); ?>
-                <? self::_picture(self::parseStringToObject("{src: '".$json['src']."', format: 'url', className: 'pack-image image rounded-t-inherit', data: null}")); ?>
+                <? self::_picture(self::parseStringToObject("{src: '" . $json['src'] . "', format: 'url', className: 'pack-image image rounded-t-inherit', data: null}")); ?>
             </a>
             <div class="card-content p-4 sm:p-6">
                 <h4 class="font-semibold text-1.5xl sm:text-2xl mb-1 sm:mb-3">
-                    <?=$json['title']?>
+                    <?= $json['title'] ?>
                 </h4>
                 <p class="text-sm sm:text-base opacity-80 line-clamp-6 mb-4 sm:mb-6">
-                    <?=$json['text']?>
+                    <?= $json['text'] ?>
                 </p>
                 <? if (!empty($json['price']) || !empty($json['btn'])): ?>
                     <div class="flex flex-col gap-4 sm:gap-6 mt-auto">
@@ -233,7 +233,7 @@ class KitTPL
 
                         <? if (!empty($json['btn'])): ?>
                             <a class="btn btn-primary btn-fill btn-light btn-lg swiper-no-swiping" data-waved="light"
-                               draggable="false" href="/services/<?=$json['linkBtn']?>">Подробнее</a>
+                               draggable="false" href="/services/<?= $json['linkBtn'] ?>">Подробнее</a>
                         <? endif; ?>
 
                     </div>
@@ -246,16 +246,16 @@ class KitTPL
     private static function _die(string $variant)
     {
         $die = [
-                'new'      => ['gradient' => 'from-lime-dark to-lime',           'text' => 'Новинка'],
+                'new' => ['gradient' => 'from-lime-dark to-lime', 'text' => 'Новинка'],
                 'chocolate' => ['gradient' => 'from-chocolate-dark to-chocolate', 'text' => 'Лидер продаж'],
-                'crimson'   => ['gradient' => 'from-crimson-dark to-crimson',     'text' => 'Лучшее качество'],
-                'sky'       => ['gradient' => 'from-sky-dark to-sky',             'text' => 'Акция'],
+                'crimson' => ['gradient' => 'from-crimson-dark to-crimson', 'text' => 'Лучшее качество'],
+                'sky' => ['gradient' => 'from-sky-dark to-sky', 'text' => 'Акция'],
         ];
 
         if (!isset($die[$variant])) return;
 
         $gradient = $die[$variant]['gradient'];
-        $text     = $die[$variant]['text'];
+        $text = $die[$variant]['text'];
         ?>
         <div class="flex items-center justify-center absolute top-2 sm:top-4 left-2 sm:left-4 bg-gradient-to-r rounded-tl-3xl rounded-br-3xl w-full sm:w-auto max-w-32 sm:max-w-none h-8 px-2 sm:px-5 <?= $gradient ?>">
             <span class="font-semibold uppercase text-white text-center text-xs sm:text-sm"><?= htmlspecialchars($text) ?></span>
@@ -409,9 +409,9 @@ class KitTPL
                 <div class="card-content py-6 sm:py-9 lg:py-12 px-4 sm:px-6 lg:px-8">
                     <?php \lib\KitTPL::subtitleSmall("{text: '" . $json['title'] . "', className: 'mb-4 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}"); ?>
                     <p class="font-semibold text-xl sm:text-2xl mb-4 sm:mb-8 lg:mb-12 anim anim-up ease-in-out duration-700"
-                       data-anim><?= $json['text'] ?>></p>
+                       data-anim><?= $json['text'] ?></p>
                     <form data-form="submit" action="/ajax/php/submit-handler.php">
-                        <input type="hidden" value="Тема" name="theme">
+                        <input type="hidden" value="<?= $json['title'] ?>" name="theme">
                         <div class="flex flex-col gap-4 mb-6">
                             <label data-label>
                                 <h5 class="font-medium mb-2">
@@ -508,7 +508,7 @@ class KitTPL
                 <? endif; ?>
 
                 <? if ($json['cost'] === 'true'): ?>
-                    <?php \lib\KitTPL::price("{className: 'mt-4 sm:mt-6 anim anim-up ease-in-out duration-700', data: 'data-anim'}"); ?>
+                    <?php \lib\KitTPL::price("{price: '" . $json['price'] . "',className: 'mt-4 sm:mt-6 anim anim-up ease-in-out duration-700', data: 'data-anim'}"); ?>
                 <? endif; ?>
 
                 <? if ($json['listing'] === 'true'): ?>
@@ -596,7 +596,7 @@ class KitTPL
     {
         ?>
         <section class="container pt-0">
-            <?php \lib\KitTPL::subtitle("{text: 'Как мы работаем', className: 'sm:text-center mb-8 sm:mb-11 lg:mb-14 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}");?>
+            <?php \lib\KitTPL::subtitle("{text: 'Как мы работаем', className: 'sm:text-center mb-8 sm:mb-11 lg:mb-14 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}"); ?>
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-4 lg:gap-6">
                 <div class="anim anim-up ease-in-out duration-700" data-anim>
                     <div class="card border border-solid border-gray pt-6 sm:pt-4 pb-6 sm:pb-8 lg:pb-10 px-6 sm:px-4">
@@ -662,20 +662,16 @@ class KitTPL
                             <?php \lib\KitTPL::subtitleSmall("{text: 'О БИО-сервисе', className: 'mb-4 sm:mb-6 lg:mb-8 clip-path clip-path-up ease-linear duration-1000', data: 'data-anim'}"); ?>
                             <div class="text-sm sm:text-base anim anim-up ease-in-out duration-700" data-anim>
                                 <p>
-                                    <b>Мы помогаем быстро и качественно создавать комфортные бытовые условия</b> на
-                                    строительных объектах, все туалетные кабины не только имеют эстетичный вид, но и
-                                    обладают повышенной прочностью, пластиковые туалеты мобильны и не требуют больших
-                                    затрат на эксплуатацию и обслуживание, установка биотуалета производится в
-                                    кратчайшие сроки и удобное время. Наша компания придерживается лояльной ценовой
-                                    политики.
+                                    <b>Компания «Био-Сервис» работает на рынке с 2009 года </b> и оказывает полный
+                                    спектр услуг в сфере санитарного обслуживания на территории Краснодара и
+                                    Краснодарского края. За годы работы мы зарекомендовали себя как надежный и
+                                    ответственный партнер для бизнеса и частных клиентов.
                                 </p>
                                 <br>
                                 <p>
-                                    Аренда биотуалетов позволяет обеспечить соблюдение санитарных норм при проведении
-                                    любых мероприятий на открытом воздухе. Мы можем предложить одновременную установку и
-                                    обслуживание более 150 биотуалетов – этот объем мобильных туалетных кабин может
-                                    обеспечить комфортную санитарно-экологическую обстановку для мероприятия с большим
-                                    количеством посетителей.
+                                    «Био-Сервис» — это современный подход, собственный парк техники и команда
+                                    специалистов, которая гарантирует качественное выполнение работ в кратчайшие сроки.
+                                    Мы ценим доверие клиентов и стремимся к долгосрочному сотрудничеству.
                                 </p>
                             </div>
                         </div>
@@ -711,7 +707,7 @@ class KitTPL
         <section
                 class="container xl:container-distance relative bg-gray xl:rounded-5xl overflow-hidden h-96 lg:h-[600px] xl:mt-0">
             <?php \lib\KitTPL::loader("{className: ''}"); ?>
-            <div class="absolute inset-0 rounded-inherit" data-yandex-map="45.03191007458623,38.921171499999936"
+            <div class="absolute inset-0 rounded-inherit" data-yandex-map="45.059338,38.896899"
                  data-src="<?= SITE_TEMPLATE_PATH ?>/img/pictures/point.svg"></div>
         </section>
         <?php

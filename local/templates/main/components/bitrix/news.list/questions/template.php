@@ -36,5 +36,6 @@ $this->setFrameMode(true);
                 </div>
             </li>
         <? endforeach; ?>
-    </div>
+        </div>
+    </ul>
 </section>
