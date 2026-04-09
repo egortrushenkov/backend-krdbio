@@ -4,9 +4,9 @@
 	use lib\Kit;
 	use Bitrix\Main\Config\Option;
     $socials = [
-            '/img/pictures/telegram',
-            '/img/pictures/whatsapp',
-            '/img/pictures/max',
+            '/img/pictures/telegram' =>  Option::get("stdkit.settings", "telegram") ,
+            '/img/pictures/whatsapp' => Option::get("stdkit.settings", "whatsapp"),
+            '/img/pictures/max' => Option::get("stdkit.settings", "max"),
     ];
 
     // Загружаем пункты верхнего меню
@@ -58,9 +58,9 @@
             Продажа, аренда и обслуживание туалетных кабин в Краснодаре и Краснодарском крае
         </p>
         <div class="flex items-center gap-4 mb-6 sm:mb-8 lg:mb-10">
-            <?php foreach ($socials as $item): ?>
-                <a class="btn btn-primary rounded-full" data-waved="light" draggable="false" href="" target="_blank">
-                    <?php \lib\KitTPL::picture("{src: '{$item}', format: 'svg', className: 'icon text-5xl sm:text-3xl', data: null}"); ?>
+            <?php foreach ($socials as $key => $item): ?>
+                <a class="btn btn-primary rounded-full" data-waved="light" draggable="false" href="<?=$item?>" target="_blank">
+                    <?php \lib\KitTPL::picture("{src: '{$key}', format: 'svg', className: 'icon text-5xl sm:text-3xl', data: null}"); ?>
                 </a>
             <?php endforeach; ?>
         </div>
